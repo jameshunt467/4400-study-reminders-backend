@@ -1,0 +1,10 @@
+{
+    "userId": "user-123",
+    "reminderId": "r001",
+    "title": "Study Math",
+    "timestamp": "2025-05-01T09:00:00",
+    "notes": "Review sorting algorithms",
+    "status": "pending",
+    "type": "study"
+  }
+  
