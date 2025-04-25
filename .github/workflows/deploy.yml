@@ -1,0 +1,50 @@
+name: Deploy All Lambdas via Matrix
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        function:
+          - createUser
+          - getUser
+          - saveReminder
+          - updateReminder
+          - deleteReminder
+          - listReminders
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install shared dependencies
+      run: npm install
+
+    - name: Zip Lambda function
+      run: |
+        mkdir -p packaged
+        cp ${{ matrix.function }}/index.js packaged/
+        cp -r node_modules packaged/
+        cd packaged
+        zip -r ../${{ matrix.function }}.zip .
+        cd ..
+      shell: bash
+
+    - name: Deploy to AWS Lambda
+      uses: aws-actions/aws-cli-action@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+        args: lambda update-function-code --function-name ${{ matrix.function }} --zip-file fileb://${{ matrix.function }}.zip

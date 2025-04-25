@@ -6,9 +6,9 @@ if (Test-Path -Path "function.zip") {
 }
 
 # Create a new function.zip containing index.js and node_modules
-Compress-Archive -Path @("index.js", "../create-user-lambda/node_modules/*") -DestinationPath "function.zip" -Force
+Compress-Archive -Path @("index.js", "../../node_modules/*") -DestinationPath "function.zip" -Force
 
 # Update the Lambda function
 aws lambda update-function-code `
-  --function-name listReminders `
+  --function-name updateReminder `
   --zip-file fileb://function.zip

@@ -1,0 +1,23 @@
+{
+  "name": "4400-study-reminders-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jameshunt467/4400-study-reminders-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jameshunt467/4400-study-reminders-backend/issues"
+  },
+  "homepage": "https://github.com/jameshunt467/4400-study-reminders-backend#readme",
+  "description": "",
+  "dependencies": {
+    "aws-sdk": "^2.1692.0"
+  }
+}
