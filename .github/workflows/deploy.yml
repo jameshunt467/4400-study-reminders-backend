@@ -42,15 +42,6 @@ jobs:
         cd ..
       shell: bash
 
-    - name: Install AWS CLI
-      run: |
-        set -e
-        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-        unzip awscliv2.zip
-        sudo ./aws/install
-        rm -rf awscliv2.zip aws
-      shell: bash
-
     - name: Deploy to AWS Lambda
       run: |
         set -e
